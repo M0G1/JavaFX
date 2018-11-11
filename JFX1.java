@@ -43,7 +43,8 @@ public class JFX1 extends Application implements EventHandler<ActionEvent> {
         if (event.getSource() == button) { //событие от кнопки под именем button
             /*System.out.println("Давай еще!!!"); - это плохо */
 
-        }
+        } 
+        
         /*if (event.getSource() == button2) { //событие от кнопки под именем button2
             *//*System.out.println("Давай еще!!!"); - это плохо *//*
         }*/
