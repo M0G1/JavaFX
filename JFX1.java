@@ -1,4 +1,7 @@
 import javafx.application.Application;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -6,47 +9,32 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.event.EventHandler;
 
-public class JFX1 extends Application implements EventHandler<ActionEvent> {
-    //EventHandler - управление событиями
-
+public class JFX1 extends Application  {
+    Stage window;
     Button button;
+    Scene scene;
 
     public static void main(String[] args) {
-
-        launch(args);       //этот метод из класса application, этот метод скажет программе, что это не просто java, а javaFX
+        launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        //здесь отображаются фх компоненты
-        /*термины окно
-         Stage - сцена(название, свернуть, закрыть во весь экрасн)
-         scene - место действия, то что внутри окна(поля вкладки)
+    public void start(Stage primaryStage) throws Exception {    //Stage- окно
+        this.window = primaryStage;
+        this.window.setTitle("Всплывающее окно");
 
-         */
-        primaryStage.setTitle("Первый урок по JAVAFX");          //название окна
-        button = new Button("Йа есть кнопко. Нажни меня");  //инициализация кнопки с надписью на ней
-        button.setOnAction(this);//устновить дейсвие, которое "прослушает" этот класс
+        button = new Button("Нажми меня");
+        button.setPrefSize(120,60);//задаем размер кнопки
+        button.setOnAction(e ->{
+            AlertWindow.display("Типо окно со свойствами","И оно реально работает?");
+            window.close();
+        });
 
-        //создать разметку для окна(сцены- место действия)
-        // разметка- размещение элементов в окне - layout
         StackPane layout = new StackPane();
-        layout.getChildren().add(button);//простая разметка(по центру)
-        Scene scene = new Scene(layout, 300, 300); //элементы в конструкторе 1 РАЗМЕТКА и размер окна
-        primaryStage.setScene(scene);   //указать где происходит действие. В каком окне расположиться контент
-        primaryStage.show();    //отображение на сцене
-    }
+        layout.getChildren().addAll(button);
+        this.scene = new Scene(layout,400,300);
+        window.setScene(scene);
+        window.show();
 
-    @Override
-    public void handle(ActionEvent event) {//вызывается при нажатии кнопки
-        // условие на то какая кнопка нажата
-        if (event.getSource() == button) { //событие от кнопки под именем button
-            System.out.println("Давай еще!!!"); - это плохо 
-
-        } 
-        
-        /*if (event.getSource() == button2) { //событие от кнопки под именем button2
-            *//*System.out.println("Давай еще!!!"); - это плохо *//*
-        }*/
     }
 }
