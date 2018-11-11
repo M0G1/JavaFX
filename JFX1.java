@@ -1,3 +1,4 @@
+import javafx.application.Application;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
