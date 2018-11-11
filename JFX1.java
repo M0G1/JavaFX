@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.event.EventHandler;
 
-public class JFX1 extends Application implements EventHandler<ActionEvent> {
+public class JFX1 extends Application  {
     //EventHandler - управление событиями
 
     Button button;
@@ -26,7 +26,12 @@ public class JFX1 extends Application implements EventHandler<ActionEvent> {
          */
         primaryStage.setTitle("Первый урок по JAVAFX");          //название окна
         button = new Button("Йа есть кнопко. Нажни меня");  //инициализация кнопки с надписью на ней
-        button.setOnAction(this);//устновить дейсвие, которое "прослушает" этот класс
+        button.setOnAction(new EventHandler<ActionEvent>() {//анонимный внутренний класс, который наследует интерфэйс ...(смотри предыдущую версию)
+            @Override           //при таком описываиии слушателя не надо указывать какой класс генерирует событие(д)
+            public void handle(ActionEvent event) {
+                System.out.println("Ткни меня еще раз!!!");
+            }
+        });//устновить дейсвие, которое "прослушает" класс this
 
         //создать разметку для окна(сцены- место действия)
         // разметка- размещение элементов в окне - layout
@@ -35,18 +40,5 @@ public class JFX1 extends Application implements EventHandler<ActionEvent> {
         Scene scene = new Scene(layout, 300, 300); //элементы в конструкторе 1 РАЗМЕТКА и размер окна
         primaryStage.setScene(scene);   //указать где происходит действие. В каком окне расположиться контент
         primaryStage.show();    //отображение на сцене
-    }
-
-    @Override
-    public void handle(ActionEvent event) {//вызывается при нажатии кнопки
-        // условие на то какая кнопка нажата
-        if (event.getSource() == button) { //событие от кнопки под именем button
-            System.out.println("Давай еще!!!"); - это плохо 
-
-        } 
-        
-        /*if (event.getSource() == button2) { //событие от кнопки под именем button2
-            *//*System.out.println("Давай еще!!!"); - это плохо *//*
-        }*/
     }
 }
