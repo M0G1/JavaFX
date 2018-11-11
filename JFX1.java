@@ -26,7 +26,7 @@ public class JFX1 extends Application  {
          */
         primaryStage.setTitle("Первый урок по JAVAFX");          //название окна
         button = new Button("Йа есть кнопко. Нажни меня");  //инициализация кнопки с надписью на ней
-        button.setOnAction(new EventHandler<ActionEvent>() {//анонимный внутренний класс
+        button.setOnAction(new EventHandler<ActionEvent>() {//анонимный внутренний класс, который наследует интерфэйс ...(смотри предыдущую версию)
             @Override           //при таком описываиии слушателя не надо указывать какой класс генерирует событие(д)
             public void handle(ActionEvent event) {
                 System.out.println("Ткни меня еще раз!!!");
