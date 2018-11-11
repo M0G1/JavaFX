@@ -41,7 +41,7 @@ public class JFX1 extends Application implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {//вызывается при нажатии кнопки
         // условие на то какая кнопка нажата
         if (event.getSource() == button) { //событие от кнопки под именем button
-            /*System.out.println("Давай еще!!!"); - это плохо */
+            System.out.println("Давай еще!!!"); - это плохо 
 
         } 
         
