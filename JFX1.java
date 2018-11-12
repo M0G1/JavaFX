@@ -4,7 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 
-public class JFX1 extends Application  {
+public class JFX1 extends Application {
     Stage window;
     Button button;
     Scene scene;
@@ -18,21 +18,37 @@ public class JFX1 extends Application  {
         this.window = primaryStage;
         this.window.setTitle("Всплывающее окно");
 
-        button = new Button("Нажми меня");
-        button.setPrefSize(120,60);//задаем размер кнопки
-        button.setOnAction(e ->{
-            boolean result = ConfirmWindow.display("Окно потверждения","И оно реально работает?");
-            System.out.println(result);
-            //window.close();
+        window.setOnCloseRequest(e -> {         //Обработка собития (закрыть окно красный крестик в правом верхнем углу).
+            e.consume();        //мы сами заботимся о событии   (закрытие)
+            closeProgramm();
+
+        });
+
+        button = new Button("Закрыть");
+        button.setPrefSize(120, 60);//задаем размер кнопки
+        button.setOnAction(e -> {
+            closeProgramm();
         });
 
         StackPane layout = new StackPane();
         layout.getChildren().addAll(button);
-        this.scene = new Scene(layout,400,300);
+        this.scene = new Scene(layout, 400, 300);
         window.setScene(scene);
         window.show();
     }
+
+    /**
+     * метод, выполнящие некоторые действия перед закрытием
+     * Этот код не выполниться, если нажать на кнопку закрытия справа сверху, если вызвать его у button
+     */
+    private void closeProgramm() {
+        Boolean answer = ConfirmWindow.display("", "Вы действительно хотите закрытьт окно?");
+        if (answer) {
+            window.close();
+        }
+    }
 }
+
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
